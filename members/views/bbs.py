@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import flask as fl
+from sqlalchemy import desc
+
 from members.tool import *
 from members.models import *
 from members.database import db_session
@@ -10,8 +12,10 @@ from members.controller.UserController import UserController
 def bbs_list(board_id):
     if board_id is "":
        return redirect("/")
-    posts = Board.query.filter(Board.boardId == board_id).all()
-    return fl.render_template("pages/list.html", board_id=board_id, posts=posts)
+    posts = Board.query.filter(Board.boardId == board_id).order_by(desc(Board.regdate)).all()
+
+    controller = UserController(db=db_session)
+    return fl.render_template("pages/list.html", board_id=board_id, posts=posts, username=controller.get_userid())
 
 @bp.route('/<board_id>/write', methods=['GET'])
 def write(board_id):
@@ -52,7 +56,7 @@ def delete(board_id, post_id):
     controller = UserController(db=db_session)
     success = False
 
-    if post.member_idx == controller.get_userid():
+    if post.member_idx == controller.get_useridx():
         success = True
 
     if success == False:

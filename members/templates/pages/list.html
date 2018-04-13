@@ -5,6 +5,7 @@
     <title>방명록</title>
 </head>
 <body>
+{{ username }}
 <h2>방명록</h2>
 <a href="{{  url_for('bbs.write', board_id=board_id) }}">글쓰기</a>
 <table>
@@ -25,7 +26,7 @@
             <td>익명</td>
         {% endif %}
         <td>{{ post['title'] }}</td>
-        <td>{{ post['contentBody'] }}</td>
+        <td>{{ post['content_body'] }}</td>
         <td>{{ post['regdate'] }}</td>
         <td><a href="{{ url_for('bbs.delete', board_id=board_id, post_id=post['id']) }}">삭제</a></td>
     </tr>

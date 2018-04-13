@@ -24,14 +24,14 @@ def logincheck():
     userpw = fl.request.form.get("userpassword")
 
     if userid is "" or userpw is "":
-        return "사용자 정보가 필요합니다"
+        return alert_and_redirect("ID/PW 확인이 필요합니다." , fl.url_for("member.login"))
 
     controller = UserController(db=db_session)
     login = controller.check_user(userid, userpw)
     if login is True:
         return alert_and_redirect("로그인 되었습니다." , "/")
 
-    return alert_and_redirect("로그인 실패 " , fl.url_for("member.login"))
+    return alert_and_redirect("ID/PW 확인이 필요합니다.", fl.url_for("member.login"))
 
 
 @bp.route("/logout")
@@ -52,7 +52,7 @@ def join_result():
     userpw = fl.request.form.get("userpassword")
 
     if userid is "" or userpw is "":
-        return "사용자 정보가 필요합니다"
+        return alert_and_redirect("입력칸을 모두 확인해주십시요." , fl.url_for("member.join"))
 
     controller = UserController(db=db_session)
 
