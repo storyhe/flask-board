@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>글쓰기</title>
+</head>
+<body>
+<form action="{{ url_for('bbs.writeok', board_id=board_id) }}" method="POST">
+    <input type="text" name="title"><br />
+    <textarea name="content"></textarea>
+    <input type="submit" value="submit">
+</form>
+
+</body>
+</html>
