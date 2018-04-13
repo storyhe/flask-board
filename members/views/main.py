@@ -5,5 +5,5 @@ bp = fl.Blueprint('main', __name__)
 
 
 @bp.route('/')
-def root():
+def index():
     return fl.render_template("index.html")

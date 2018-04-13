@@ -7,11 +7,16 @@ from members.models import *
 from members.database import db_session
 bp = fl.Blueprint('bbs', __name__, url_prefix="/bbs")
 from members.controller.UserController import UserController
-
+from members.controller.BoardController import BoardController
 @bp.route('/<board_id>')
 def bbs_list(board_id):
     if board_id is "":
        return redirect("/")
+
+    bbs = BoardController(db=db_session)
+    if bbs.check_board(board_id) is False:
+        return alert_and_redirect("존재하지 않은 게시판입니다", url=fl.url_for("main.index"))
+
     posts = Board.query.filter(Board.boardId == board_id).order_by(desc(Board.regdate)).all()
 
     controller = UserController(db=db_session)

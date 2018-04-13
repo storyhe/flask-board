@@ -20,3 +20,9 @@ class Board(Base):
     content_body = Column(Text)
     regdate = Column(DateTime, nullable=False, default=datetime.utcnow)
 
+
+class Board_list(Base):
+    __tablename__ = 'BoardList'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(20))
+    regdate = Column(DateTime, nullable=False, default=datetime.utcnow)
