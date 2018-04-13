@@ -16,7 +16,7 @@ def root():
 def login():
     if 'userinfo' in fl.session:
         return alert_and_redirect("이미 로그인 되었습니다.", "/")
-    return fl.render_template("member/login.html")
+    return fl.render_template("member/login.html", title="로그인")
 
 @bp.route("/login/check", methods=['POST'])
 def logincheck():
@@ -44,7 +44,7 @@ def logout():
 
 @bp.route("/join")
 def join():
-    return fl.render_template("member/join.html")
+    return fl.render_template("member/join.html", title="회원가입")
 
 @bp.route("/join", methods=["POST"])
 def join_result():

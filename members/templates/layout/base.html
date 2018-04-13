@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ title }}</title>
+    {% block head %}
+    {% endblock %}
 </head>
 <body>
 {% block body %}
 {% endblock %}
 </body>
+
 
 {% extends 'layout/tail.html' %}

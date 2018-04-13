@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>회원가입</title>
-</head>
-<body>
+{% extends 'layout/base.html' %}
 
+{% block body %}
 <form action="" method="POST">
     <p>사용자 아이디: <input type="text" name="userid" /></p>
     <p>사용자 패스워드 : <input type="password" name="userpassword" /></p>
     <p><input type="submit" value="가입하기" /></p>
 </form>
 
-</body>
-</html>
+{% endblock %}
